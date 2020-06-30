@@ -1,78 +1,28 @@
 # test
-web
-<context-param>
-        <param-name>log4jConfigLocation</param-name>
-        <param-value>/WEB-INF/config/log4j.xml</param-value>
-    </context-param>
-  <listener>
 
-<listener>
-        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
-    </listener>
- 
-    
-xml
-    <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 
-<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+log4j.appender.STDOUT=org.apache.log4j.ConsoleAppender
+log4j.appender.STDOUT.Target=System.out
+log4j.appender.STDOUT.layout=org.apache.log4j.PatternLayout
+log4j.appender.STDOUT.layout.ConversionPattern=<CG><%d{yyyy-MM-dd HH:mm:ss}>[%-5p] %c - %m%n
 
-    <appender name="console" class="org.apache.log4j.ConsoleAppender">
-        <param name="Threshold" value="DEBUG"/>
-        <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern"
-                   value="[%p] [%d{dd-MM-yy HH:mm:ss}] %c{1}.%M(%L): %m%n"/>
-        </layout>
-    </appender>
+log4j.appender.FILE=org.apache.log4j.rolling.RollingFileAppender
+log4j.appender.FILE.rollingPolicy=org.apache.log4j.rolling.TimeBasedRollingPolicy
+log4j.appender.FILE.rollingPolicy.ActiveFileName=C:/Users/ivan2/Desktop/logss/app.log
+log4j.appender.FILE.rollingPolicy.FileNamePattern=C:/Users/ivan2/Desktop/logss/app.%d{yyyyMMdd}.%d{HHmm}.log.gz
+log4j.appender.FILE.triggeringPolicy=org.apache.log4j.rolling.SizeBasedTriggeringPolicy
+log4j.appender.FILE.triggeringPolicy.MaxFileSize=1014
+log4j.appender.FILE.layout=org.apache.log4j.PatternLayout
+log4j.appender.FILE.layout.ConversionPattern=<CG><%d{yyyy-MM-dd HH:mm:ss}>[%-5p] %c - %m%n
 
-<!--     <appender name="spring" class="org.apache.log4j.RollingFileAppender"> -->
-<!--         <param name="Threshold" value="DEBUG"/> -->
-<!--         <param name="File" value="C:/Users/ivan2/Desktop/logss/afores.log"/> -->
-<!--         <param name="MaxFileSize" value="50000KB"/> -->
-<!--         <param name="MaxBackupIndex" value="9"/> -->
-<!--         <layout class="org.apache.log4j.PatternLayout"> -->
-<!--             <param name="ConversionPattern"  -->
-<!--                    value=" [sapi] %p [%d{dd-MM-yy HH:mm:ss}] (%C{1}.%M:%L)| %m%n"/> -->
-<!--         </layout> -->
-<!--     </appender> -->
+#log4j.appender.FILE=org.apache.log4j.RollingFileAppender
+#log4j.appender.FILE.File=C:/Users/ivan2/Desktop/logss/afores.log
+#log4j.appender.FILE.MaxFileSize=1KB
+#log4j.appender.FILE.MaxBackupIndex=10
+#log4j.appender.FILE.layout=org.apache.log4j.PatternLayout
+#log4j.appender.FILE.layout.ConversionPattern=<CG><%d{yyyy-MM-dd HH:mm:ss}>[%-5p] %c - %m%n
+#log4j.appender.FILE.append=true
 
-<!--     <appender name="afore" class="org.apache.log4j.RollingFileAppender"> -->
-<!--         <param name="File" value="C:/Users/ivan2/Desktop/logss/afores.log"/> -->
-<!--         <param name="MaxFileSize" value="50000KB"/> -->
-<!--         <param name="MaxBackupIndex" value="9"/> -->
-<!--         <layout class="org.apache.log4j.PatternLayout"> -->
-<!--             <param name="ConversionPattern"  -->
-<!--                    value=" [sapi] %p [%d{dd-MM-yy HH:mm:ss}] (%C{1}.%M:%L)| %m%n"/> -->
-<!--         </layout> -->
-<!--     </appender> -->
-
-	<appender name="afore" class="org.apache.log4j.rolling.RollingFileAppender">
-	    <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
-	        <param name="ActiveFileName" value="C:/Users/ivan2/Desktop/logss/app.log" />
-	        <param name="FileNamePattern" value="C:/Users/ivan2/Desktop/logss/app.%d{yyyyMMdd}.%d{HHmm}.log.gz" />
-	    </rollingPolicy>
-	    <triggeringPolicy
-	        class="org.apache.log4j.rolling.SizeBasedTriggeringPolicy">
-	        <param name="MaxFileSize" value="1014" />
-	    </triggeringPolicy>
-	    <layout class="org.apache.log4j.PatternLayout">
-	        <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p - %m%n" />
-	    </layout>
-	</appender>
-
-<!--     <logger name="org.springframework" additivity="true"> -->
-<!--         <level value="debug"/> -->
-<!--         <appender-ref ref="spring"/> -->
-<!--     </logger> -->
-  
-    <logger name="mx.com.aforebanamex" additivity="true">
-        <level value="all"/>
-        <appender-ref ref="afore"/>
-    </logger>
-
-    <root>
-        <level value="debug"/>
-        <appender-ref ref="console"/>
-    </root>
-
-</log4j:configuration>
+log4j.rootLogger=INFO,FILE,STDOUT
+log4j.logger.org.springframework=INFO,STDOUT
+log4j.logger.mx.com.aforebanamex.plata=STDOUT
